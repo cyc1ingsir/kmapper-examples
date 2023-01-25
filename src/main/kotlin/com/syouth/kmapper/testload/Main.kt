@@ -11,6 +11,8 @@ import com.syouth.kmapper.testload.dto.recursiveDataClassTest.RecursiveDataClass
 import com.syouth.kmapper.testload.mappers.listConvertionTest.ListDtoMapperImpl
 import com.syouth.kmapper.testload.mappers.listConvertionTest.ListMapperImpl
 import com.syouth.kmapper.testload.mappers.moneyMapperTest.toMoney
+import com.syouth.kmapper.testload.mappers.nonDataClassTest.DomainUser2EntityMapperImpl
+import com.syouth.kmapper.testload.mappers.nonDataClassTest.UserEntity2DomainMapperImpl
 import com.syouth.kmapper.testload.mappers.recursiveDataClassTest.RecursiveDataClassTestMapperImpl
 import java.math.BigDecimal
 import java.util.*
@@ -37,8 +39,15 @@ fun main() {
     val listMapper = ListMapperImpl()
     println(listMapper.map(listDto, listOf(OtherListDto("third"), OtherListDto("fourth"))))
 
-    val address = DomainAddress(UUID.randomUUID(), "10 Baker St", "London")
-    val user = DomainUser(UUID.randomUUID(), "sherlock", "Sherlock", "Holmes", listOf(address))
+    val addressBaker = DomainAddress(UUID.randomUUID(), "10 Baker St", "London")
+    val addressScot = DomainAddress(UUID.randomUUID(), "10 Wood St", "Edinburgh")
+    val user = DomainUser(UUID.randomUUID(), "sherlock", "Sherlock", "Holmes",
+            listOf(addressBaker, addressScot))
 
+    val domainUser2EntityMapper = DomainUser2EntityMapperImpl()
+    val userEntity = domainUser2EntityMapper.map(user)
+    println(userEntity)
 
+    val entity2DomainMapper = UserEntity2DomainMapperImpl()
+    println(entity2DomainMapper.map(userEntity))
 }

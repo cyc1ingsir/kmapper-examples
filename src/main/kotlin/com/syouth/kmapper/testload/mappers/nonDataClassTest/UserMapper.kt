@@ -11,9 +11,19 @@ import com.syouth.kmapper.testload.dto.nonDataClassTest.UserEntity
  */
 @Mapper
 internal interface DomainUser2EntityMapper {
-    fun map(u: DomainUser) : UserEntity
+    fun map(du: DomainUser) : UserEntity
 }
 @Mapper
 internal interface DomainAddress2EntityMapper {
-    fun map(u: DomainAddress) : AddressEntity
+    fun map(da: DomainAddress) : AddressEntity
+}
+
+@Mapper
+internal interface UserEntity2DomainMapper {
+    fun map(ue: UserEntity ) : DomainUser
+}
+
+@Mapper
+internal interface AddressEntity {
+    fun map(ae: AddressEntity) : DomainAddress
 }
