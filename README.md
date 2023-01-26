@@ -21,8 +21,14 @@ signing.secretKeyRingFile=PathToYourKeyRingFile
 
 ```shell
 cd <kMapper root folder>
+./gradlew processor_annotations:publishToMavenLocal
 ./gradlew publishToMavenLocal
 ```
+Any time, something was changed on the `kMapper` code,  
+```shell
+./gradlew publishToMavenLocal
+```
+needs to be run again.
 
 ## Build and Run
 
