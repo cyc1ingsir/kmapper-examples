@@ -4,6 +4,14 @@ plugins {
     application
     kotlin("jvm") version "1.8.0"
     id("com.google.devtools.ksp") version "1.8.0-1.0.8" // /for kmapper
+    kotlin("plugin.jpa") version "1.8.0"
+    kotlin("plugin.allopen") version "1.8.0" // https://spring.io/guides/tutorials/spring-boot-kotlin/
+}
+
+allOpen {
+    // https://spring.io/guides/tutorials/spring-boot-kotlin/
+    // Persistence with JPA
+    annotation("jakarta.persistence.Entity")
 }
 
 group = "io.github.s0nicyouth"
@@ -40,6 +48,7 @@ kotlin {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    implementation("jakarta.persistence:jakarta.persistence-api:+")
     implementation("io.github.s0nicyouth:processor_annotations:$kMapperVersion")
     implementation("io.github.s0nicyouth:converters:$kMapperVersion")
     ksp("io.github.s0nicyouth:processor:$kMapperVersion")
