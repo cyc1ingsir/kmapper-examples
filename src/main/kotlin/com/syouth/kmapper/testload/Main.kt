@@ -5,6 +5,7 @@ import com.syouth.kmapper.testload.domain.nonDataClassTest.DomainUser
 import com.syouth.kmapper.testload.dto.listConvertionTest.ListDto
 import com.syouth.kmapper.testload.dto.listConvertionTest.OtherListDto
 import com.syouth.kmapper.testload.dto.moneyMapperTest.MoneyDto
+import com.syouth.kmapper.testload.dto.plainClassTest.SimpleUser
 import com.syouth.kmapper.testload.dto.recursiveDataClassTest.RecursiveDataClassDto
 import com.syouth.kmapper.testload.dto.recursiveDataClassTest.RecursiveDataClassDtoSecond
 import com.syouth.kmapper.testload.dto.recursiveDataClassTest.RecursiveDataClassDtoThird
@@ -13,6 +14,7 @@ import com.syouth.kmapper.testload.mappers.listConvertionTest.ListMapperImpl
 import com.syouth.kmapper.testload.mappers.moneyMapperTest.toMoney
 import com.syouth.kmapper.testload.mappers.nonDataClassTest.DomainUser2EntityMapperImpl
 import com.syouth.kmapper.testload.mappers.nonDataClassTest.UserEntity2DomainMapperImpl
+import com.syouth.kmapper.testload.mappers.plainClassTest.Simple2AdvancedUserMapperImpl
 import com.syouth.kmapper.testload.mappers.recursiveDataClassTest.RecursiveDataClassTestMapperImpl
 import java.math.BigDecimal
 import java.util.*
@@ -50,4 +52,10 @@ fun main() {
 
     val entity2DomainMapper = UserEntity2DomainMapperImpl()
     println(entity2DomainMapper.map(userEntity))
+
+
+    val simpleUser = SimpleUser("Sherlock", "Holmes")
+    val simple2AdvancedUserMapper = Simple2AdvancedUserMapperImpl()
+    val advancedUser = simple2AdvancedUserMapper.map(simpleUser)
+    println(advancedUser)
 }

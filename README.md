@@ -44,5 +44,5 @@ ListDomain(i=OtherListDomain(k=Other), l=[OtherListDomain(k=first), OtherListDom
 ListDomain(i=OtherListDomain(k=Other), l=[OtherListDomain(k=third), OtherListDomain(k=fourth)])
 UserEntity(id=4e18c1cf-6b6d-46dc-83e9-00dfdc0fec8a, login=sherlock, firstname=Sherlock, lastname=Holmes, addresses=[AddressEntity(id=c9508952-d95f-42ff-8484-8615193c955b, street=10 Baker St, town=London), AddressEntity(id=1e596c66-ac1a-4e12-ac01-c3d2930566fd, street=10 Wood St, town=Edinburgh)])
 DomainUser(id=4e18c1cf-6b6d-46dc-83e9-00dfdc0fec8a, login=sherlock, firstname=Sherlock, lastname=Holmes, addresses=[DomainAddress(id=c9508952-d95f-42ff-8484-8615193c955b, street=10 Baker St, town=London), DomainAddress(id=1e596c66-ac1a-4e12-ac01-c3d2930566fd, street=10 Wood St, town=Edinburgh)])
-
+AdvancedUser(firstname=Sherlock, lastname=Holmes, hairColour=null)
 ```
