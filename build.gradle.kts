@@ -1,4 +1,4 @@
-val kMapperVersion: String = "1.1.0-SNAPSHOT"
+val kMapperVersion: String = "1.0.0"
 
 plugins {
     application
