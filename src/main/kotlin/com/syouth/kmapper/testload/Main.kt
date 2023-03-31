@@ -2,6 +2,11 @@ package com.syouth.kmapper.testload
 
 import com.syouth.kmapper.testload.domain.nonDataClassTest.DomainAddress
 import com.syouth.kmapper.testload.domain.nonDataClassTest.DomainUser
+import com.syouth.kmapper.testload.dto.RecursiveTest.AtoBRelationDto
+import com.syouth.kmapper.testload.dto.RecursiveTest.RecDtoPartA
+import com.syouth.kmapper.testload.dto.RecursiveTest.RecDtoPartB
+import com.syouth.kmapper.testload.dto.bindTest.BindDto
+import com.syouth.kmapper.testload.dto.bindTest.SomeInternalDto
 import com.syouth.kmapper.testload.dto.listConvertionTest.ListDto
 import com.syouth.kmapper.testload.dto.listConvertionTest.OtherListDto
 import com.syouth.kmapper.testload.dto.moneyMapperTest.MoneyDto
@@ -16,11 +21,31 @@ import com.syouth.kmapper.testload.mappers.nonDataClassTest.DomainUser2EntityMap
 import com.syouth.kmapper.testload.mappers.nonDataClassTest.UserEntity2DomainMapperImpl
 import com.syouth.kmapper.testload.mappers.plainClassTest.Simple2AdvancedUserMapperImpl
 import com.syouth.kmapper.testload.mappers.recursiveDataClassTest.RecursiveDataClassTestMapperImpl
+import com.syouth.kmapper.testload.mappers.recursiveTest.PartADto2DomainMapperImpl
+import com.syouth.kmapper.testload.mappers.recursiveTest.PartBDto2DomainMapperImpl
+import com.syouth.kmapper.testload.mappers.recursiveTest.RelationDto2DomainMapperImpl
 import java.math.BigDecimal
-import java.util.*
+import java.util.UUID
 
 
 fun main() {
+
+    val dtoPartB = findPartB()
+
+    val partBMapper = PartBDto2DomainMapperImpl()
+    val partAMapper = PartADto2DomainMapperImpl()
+
+    val relationMapper = RelationDto2DomainMapperImpl()
+    val domainRelations = dtoPartB.relations.map { relation ->
+        relationMapper.map(
+            relation,
+            partAMapper.map(relation.partA, mutableListOf()),
+            partBMapper.map(relation.partB, mutableListOf())
+        )
+    }
+    val domainPartB = partBMapper.map(dtoPartB, domainRelations.toMutableList())
+
+    println(domainPartB)
 
     val m = MoneyDto(22, "EUR")
     val money = m.toMoney()
@@ -58,4 +83,18 @@ fun main() {
     val simple2AdvancedUserMapper = Simple2AdvancedUserMapperImpl()
     val advancedUser = simple2AdvancedUserMapper.map(simpleUser)
     println(advancedUser)
+}
+
+private fun findPartB(): RecDtoPartB {
+    val aOneDto = RecDtoPartA(1, "A one")
+    val aTwoDto = RecDtoPartA(2, "A two")
+    val aThreeDto = RecDtoPartA(3, "A three")
+    val partBRoomDto = RecDtoPartB(1, "Room")
+    val relOneDto = AtoBRelationDto(1, 1, "morning", aOneDto, partBRoomDto)
+    val relTwoDto = AtoBRelationDto(2, 1, "lunch", aTwoDto, partBRoomDto)
+    val relThreeDto = AtoBRelationDto(2, 1, "evening", aThreeDto, partBRoomDto)
+
+    partBRoomDto.relations = mutableListOf(relOneDto, relTwoDto, relThreeDto)
+
+    return partBRoomDto
 }
