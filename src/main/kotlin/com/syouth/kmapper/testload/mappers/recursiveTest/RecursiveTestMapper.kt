@@ -32,34 +32,19 @@ interface RecursiveTestMapper {
 }
 */
 
-/*@Mapper
+@Mapper
 interface PartBDto2DomainMapper {
     fun map(dto: RecDtoPartB, @Bind relations: MutableList<AtoBRelationDomain>) : RecDomainPartB
 
     fun map(domain: RecDomainPartB, @Bind relations: MutableList<AtoBRelationDto>) : RecDtoPartB
-}*/
-
-interface RelationMapperHelper {
-
-    fun mapRelationMember(dto: RecDtoPartB): RecDomainPartB = mapWithList(dto, mutableListOf())
-    fun mapRelationMember(dto: RecDtoPartA): RecDomainPartA = mapWithList(dto, mutableListOf())
-    fun mapWithList(dto: RecDtoPartA, @Bind relations: MutableList<AtoBRelationDomain>) : RecDomainPartA
-    fun mapWithList(dto: RecDtoPartB, @Bind relations: MutableList<AtoBRelationDomain>) : RecDomainPartB
-
-}
-
-@Mapper
-interface PartBDto2DomainMapper  {
-    fun map(dto: RecDtoPartB) : RecDomainPartB
-
 }
 
 @Mapper
 interface PartADto2DomainMapper {
-    fun map(dto: RecDtoPartA) : RecDomainPartA
+    fun map(dto: RecDtoPartA, @Bind relations: MutableList<AtoBRelationDomain>) : RecDomainPartA
 }
 
 @Mapper
-interface RelationDto2DomainMapper: RelationMapperHelper {
-    fun map(dto: AtoBRelationDto) : AtoBRelationDomain
+interface RelationDto2DomainMapper {
+    fun map(dto: AtoBRelationDto, @Bind partA: RecDomainPartA, @Bind partB: RecDomainPartB) : AtoBRelationDomain
 }
