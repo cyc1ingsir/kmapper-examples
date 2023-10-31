@@ -4,7 +4,7 @@ plugins {
     application
     kotlin("jvm") version "1.9.0"
     id("com.google.devtools.ksp") version "1.9.0-1.0.12" // /for kmapper
-    kotlin("plugin.jpa") version "1.9.0"
+    kotlin("plugin.jpa") version "1.9.20"
     kotlin("plugin.allopen") version "1.9.0" // https://spring.io/guides/tutorials/spring-boot-kotlin/
 }
 
