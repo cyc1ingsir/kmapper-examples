@@ -1,11 +1,13 @@
-val kMapperVersion: String = "1.1.0"
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+val kMapperVersion: String = "1.2.1-SNAPSHOT"
 
 plugins {
     application
-    kotlin("jvm") version "1.8.10"
-    id("com.google.devtools.ksp") version "1.8.10-1.0.9" // /for kmapper
-    kotlin("plugin.jpa") version "1.8.10"
-    kotlin("plugin.allopen") version "1.8.10" // https://spring.io/guides/tutorials/spring-boot-kotlin/
+    kotlin("jvm") version "2.0.0"
+    id("com.google.devtools.ksp") version "2.0.20-1.0.25" // /for kmapper
+    kotlin("plugin.jpa") version "2.0.20"
+    kotlin("plugin.allopen") version "2.0.20" // https://spring.io/guides/tutorials/spring-boot-kotlin/
 }
 
 allOpen {
@@ -16,11 +18,10 @@ allOpen {
 
 group = "io.github.s0nicyouth"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_17
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
+
+tasks.withType<KotlinCompile> {
+    compilerOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "17"
     }
 }
 
@@ -44,6 +45,7 @@ kotlin {
     sourceSets.test {
         kotlin.srcDir("build/generated/ksp/test/kotlin")
     }
+    jvmToolchain(21)
 }
 
 dependencies {
