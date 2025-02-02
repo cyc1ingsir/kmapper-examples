@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val kMapperVersion: String = "1.2.1-SNAPSHOT"
+//val kMapperVersion: String = "1.2.1-SNAPSHOT"
+val kMapperVersion: String = "1.2.0"
 
 plugins {
     application
