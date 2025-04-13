@@ -5,10 +5,10 @@ val kMapperVersion: String = "1.2.0"
 
 plugins {
     application
-    kotlin("jvm") version "2.1.20-Beta2"
-    id("com.google.devtools.ksp") version "2.1.20-Beta2-1.0.29" // /for kmapper
-    kotlin("plugin.jpa") version "2.1.20-Beta2"
-    kotlin("plugin.allopen") version "2.1.20-Beta2" // https://spring.io/guides/tutorials/spring-boot-kotlin/
+    kotlin("jvm") version "2.1.20"
+    id("com.google.devtools.ksp") version "2.1.20-2.0.0" // /for kmapper
+    kotlin("plugin.jpa") version "2.1.20"
+    kotlin("plugin.allopen") version "2.1.20" // https://spring.io/guides/tutorials/spring-boot-kotlin/
 }
 
 allOpen {
