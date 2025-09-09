@@ -1,14 +1,15 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 //val kMapperVersion: String = "1.2.1-SNAPSHOT"
-val kMapperVersion: String = "1.2.0"
+val kMapperVersion: String = "1.3.0"
 
 plugins {
     application
-    kotlin("jvm") version "2.1.20"
-    id("com.google.devtools.ksp") version "2.1.20-2.0.0" // /for kmapper
-    kotlin("plugin.jpa") version "2.1.20"
-    kotlin("plugin.allopen") version "2.1.20" // https://spring.io/guides/tutorials/spring-boot-kotlin/
+    kotlin("jvm") version "2.2.10"
+    id("com.google.devtools.ksp") version "2.2.10-2.0.2" // /for kmapper
+//    id("io.github.s0nicyouth.kmapper-plugin")
+    kotlin("plugin.jpa") version "2.2.10"
+    kotlin("plugin.allopen") version "2.2.10" // https://spring.io/guides/tutorials/spring-boot-kotlin/
 }
 
 allOpen {
