@@ -9,7 +9,7 @@ name: Kotlin CI with Gradle
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "v1.30" ]
   pull_request:
     branches: [ "main" ]
 
