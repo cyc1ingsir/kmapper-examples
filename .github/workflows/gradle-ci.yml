@@ -5,11 +5,11 @@
 # This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
 
-name: Kotlin CI with Gradle
+name: Kotlin CI with Gradle for v1.30
 
 on:
   push:
-    branches: [ "main", "v1.30" ]
+    branches: [ "v1.30" ]
   pull_request:
     branches: [ "main" ]
 
@@ -24,17 +24,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v5
-    - name: Set up JDK 21
+    - name: Set up JDK 21 
       uses: actions/setup-java@v5
       with:
         distribution: 'temurin'
         java-version: '21'
 
-    - name: Run Gradle Wrapper
-      uses: gradle/gradle-build-action@v3
-      with:
-        gradle-version: wrapper
-        arguments: |
-          build
-          -x test
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
+    - name: Build with Gradle
+      run: ./gradlew build -x test
 
