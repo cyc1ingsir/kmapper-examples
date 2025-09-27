@@ -9,6 +9,6 @@ import com.syouth.kmapper.testload.dto.plainClassTest.SimpleUser
  */
 
 @Mapper
-internal interface Simple2AdvancedUserMapper {
+internal fun interface Simple2AdvancedUserMapper {
     fun map(su: SimpleUser) : AdvancedUser
 }

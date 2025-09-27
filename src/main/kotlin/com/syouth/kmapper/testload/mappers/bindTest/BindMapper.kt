@@ -7,6 +7,6 @@ import com.syouth.kmapper.testload.dto.bindTest.BindDto
 import com.syouth.kmapper.testload.dto.bindTest.SomeInternalDto
 
 @Mapper
-internal interface BindMapper {
+internal fun interface BindMapper {
     fun map(dto: BindDto, @Bind second: Int, @Bind third: SomeInternalDto, @Bind(to = "fourth") pr: Double): BindDomain
 }

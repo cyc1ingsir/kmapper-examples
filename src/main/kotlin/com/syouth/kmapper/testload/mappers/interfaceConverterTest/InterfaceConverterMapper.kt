@@ -8,7 +8,7 @@ import com.syouth.kmapper.testload.domain.interfaceConvertersTest.InterfaceTestD
 import com.syouth.kmapper.testload.dto.interfaceConvertersTest.InterfaceTestDto
 
 @Mapper
-interface InterfaceConverterMapper : PrimitiveTypeConverters, BigDecimalTypeConverters {
+fun interface InterfaceConverterMapper : PrimitiveTypeConverters, BigDecimalTypeConverters {
     @Mapping(target = "bigDecimalToStr", source = "from.bigDecimalToString")
     fun map(from: InterfaceTestDto): InterfaceTestDomain
 }

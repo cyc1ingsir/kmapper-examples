@@ -7,7 +7,7 @@ import com.syouth.kmapper.testload.domain.recursiveDataClassTest.RecursiveDataCl
 import com.syouth.kmapper.testload.dto.recursiveDataClassTest.RecursiveDataClassDto
 
 @Mapper
-internal interface RecursiveDataClassTestMapper : BigDecimalTypeConverters {
+internal fun interface RecursiveDataClassTestMapper : BigDecimalTypeConverters {
     @Mapping(target = "second.third.bigDecimalToFloat", source = "from.second.third.bigDecimalToFloatRenamed")
     @Mapping(target = "second.third.stringToString", source = "from.second.third.stringToStringRenamed")
     fun map(from: RecursiveDataClassDto): RecursiveDataClassDomain

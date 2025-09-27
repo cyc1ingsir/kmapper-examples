@@ -7,11 +7,11 @@ import com.syouth.kmapper.testload.dto.listConvertionTest.ListDto
 import com.syouth.kmapper.testload.dto.listConvertionTest.OtherListDto
 
 @Mapper
-internal interface ListMapper {
+internal fun interface ListMapper {
     fun map(o: ListDto, @Bind l: List<OtherListDto>): ListDomain
 }
 
 @Mapper
-internal interface ListDtoMapper {
+internal fun interface ListDtoMapper {
     fun map(o: ListDto) : ListDomain
 }

@@ -40,11 +40,11 @@ interface PartBDto2DomainMapper {
 }
 
 @Mapper
-interface PartADto2DomainMapper {
+fun interface PartADto2DomainMapper {
     fun map(dto: RecDtoPartA, @Bind relations: MutableList<AtoBRelationDomain>) : RecDomainPartA
 }
 
 @Mapper
-interface RelationDto2DomainMapper {
+fun interface RelationDto2DomainMapper {
     fun map(dto: AtoBRelationDto, @Bind partA: RecDomainPartA, @Bind partB: RecDomainPartB) : AtoBRelationDomain
 }
