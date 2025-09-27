@@ -25,8 +25,7 @@ import com.syouth.kmapper.testload.mappers.recursiveDataClassTest.RecursiveDataC
 import com.syouth.kmapper.testload.mappers.recursiveTest.PartADto2DomainMapperImpl
 import com.syouth.kmapper.testload.mappers.recursiveTest.PartBDto2DomainMapperImpl
 import com.syouth.kmapper.testload.mappers.recursiveTest.RelationDto2DomainMapperImpl
-import java.util.*
-
+import java.util.UUID
 
 fun main() {
 
