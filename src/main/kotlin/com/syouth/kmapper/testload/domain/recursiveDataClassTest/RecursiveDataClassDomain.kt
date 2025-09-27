@@ -1,6 +1,6 @@
 package com.syouth.kmapper.testload.domain.recursiveDataClassTest
 
-import java.math.BigDecimal
+import com.ionspin.kotlin.bignum.decimal.BigDecimal
 
 internal data class RecursiveDataClassDomain(
     val second: RecursiveDataClassDomainSecond

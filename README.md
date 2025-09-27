@@ -4,7 +4,7 @@ A few examples for using the [kMapper](https://github.com/s0nicyouth/kmapper).
 
 ## Use kMapper Local Develop Version
 
-It uses the non released version `1.1.0-SNAPSHOT`
+It uses the released version `1.3.0`
 
 To use this from `mavenLocal()`, you need to create a gpg key to sign the artefacts.  
 [Documentation](https://central.sonatype.org/publish/requirements/gpg/#signing-a-file)
