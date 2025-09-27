@@ -1,12 +1,12 @@
 package com.syouth.kmapper.testload
 
+import com.ionspin.kotlin.bignum.decimal.BigDecimal
 import com.syouth.kmapper.testload.domain.nonDataClassTest.DomainAddress
 import com.syouth.kmapper.testload.domain.nonDataClassTest.DomainUser
 import com.syouth.kmapper.testload.dto.RecursiveTest.AtoBRelationDto
 import com.syouth.kmapper.testload.dto.RecursiveTest.RecDtoPartA
 import com.syouth.kmapper.testload.dto.RecursiveTest.RecDtoPartB
-import com.syouth.kmapper.testload.dto.bindTest.BindDto
-import com.syouth.kmapper.testload.dto.bindTest.SomeInternalDto
+import com.syouth.kmapper.testload.dto.interfaceConvertersTest.InterfaceTestDto
 import com.syouth.kmapper.testload.dto.listConvertionTest.ListDto
 import com.syouth.kmapper.testload.dto.listConvertionTest.OtherListDto
 import com.syouth.kmapper.testload.dto.moneyMapperTest.MoneyDto
@@ -14,6 +14,7 @@ import com.syouth.kmapper.testload.dto.plainClassTest.SimpleUser
 import com.syouth.kmapper.testload.dto.recursiveDataClassTest.RecursiveDataClassDto
 import com.syouth.kmapper.testload.dto.recursiveDataClassTest.RecursiveDataClassDtoSecond
 import com.syouth.kmapper.testload.dto.recursiveDataClassTest.RecursiveDataClassDtoThird
+import com.syouth.kmapper.testload.mappers.interfaceConverterTest.InterfaceConverterMapperImpl
 import com.syouth.kmapper.testload.mappers.listConvertionTest.ListDtoMapperImpl
 import com.syouth.kmapper.testload.mappers.listConvertionTest.ListMapperImpl
 import com.syouth.kmapper.testload.mappers.moneyMapperTest.toMoney
@@ -24,12 +25,12 @@ import com.syouth.kmapper.testload.mappers.recursiveDataClassTest.RecursiveDataC
 import com.syouth.kmapper.testload.mappers.recursiveTest.PartADto2DomainMapperImpl
 import com.syouth.kmapper.testload.mappers.recursiveTest.PartBDto2DomainMapperImpl
 import com.syouth.kmapper.testload.mappers.recursiveTest.RelationDto2DomainMapperImpl
-import java.math.BigDecimal
-import java.util.UUID
+import java.util.*
 
 
 fun main() {
 
+    // Parts
     val dtoPartB = findPartB()
 
     val partBMapper = PartBDto2DomainMapperImpl()
@@ -47,11 +48,18 @@ fun main() {
 
     println(domainPartB)
 
+    // Money
     val m = MoneyDto(22, "EUR")
     val money = m.toMoney()
 
     println(money)
 
+    // InterfaceConverter
+    val interfaceTestDto = InterfaceTestDto(1.0f, 2.0, "3.0", BigDecimal.TEN)
+    val interfaceConverterMapper = InterfaceConverterMapperImpl()
+    val testDomainObject = interfaceConverterMapper.map(interfaceTestDto)
+    println (testDomainObject)
+    // Recursive
     val rdd =
         RecursiveDataClassDto(
             RecursiveDataClassDtoSecond(
@@ -59,6 +67,7 @@ fun main() {
     val rMapper = RecursiveDataClassTestMapperImpl()
     println(rMapper.map(rdd))
 
+    // Lists
     val listDto = ListDto(OtherListDto("Other"), listOf(OtherListDto("first"), OtherListDto("second")))
     val lMapper = ListDtoMapperImpl()
     println(lMapper.map(listDto))
@@ -66,6 +75,7 @@ fun main() {
     val listMapper = ListMapperImpl()
     println(listMapper.map(listDto, listOf(OtherListDto("third"), OtherListDto("fourth"))))
 
+    // User entity including address
     val addressBaker = DomainAddress(UUID.randomUUID(), "10 Baker St", "London")
     val addressScot = DomainAddress(UUID.randomUUID(), "10 Wood St", "Edinburgh")
     val user = DomainUser(UUID.randomUUID(), "sherlock", "Sherlock", "Holmes",
@@ -77,7 +87,6 @@ fun main() {
 
     val entity2DomainMapper = UserEntity2DomainMapperImpl()
     println(entity2DomainMapper.map(userEntity))
-
 
     val simpleUser = SimpleUser("Sherlock", "Holmes")
     val simple2AdvancedUserMapper = Simple2AdvancedUserMapperImpl()
