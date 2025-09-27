@@ -1,6 +1,6 @@
 package com.syouth.kmapper.testload.dto.interfaceConvertersTest
 
-import java.math.BigDecimal
+import com.ionspin.kotlin.bignum.decimal.BigDecimal
 
 data class InterfaceTestDto(
     val floatToInt: Float,
