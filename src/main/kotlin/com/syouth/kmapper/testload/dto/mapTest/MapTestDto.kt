@@ -1,6 +1,6 @@
 package com.syouth.kmapper.testload.dto.mapTest
 
-import java.math.BigDecimal
+import com.ionspin.kotlin.bignum.decimal.BigDecimal
 
 internal data class MapTestDto(
     val mapOne: Map<String, Int>,

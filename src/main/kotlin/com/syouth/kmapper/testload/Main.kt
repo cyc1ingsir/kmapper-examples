@@ -6,17 +6,22 @@ import com.syouth.kmapper.testload.domain.nonDataClassTest.DomainUser
 import com.syouth.kmapper.testload.dto.RecursiveTest.AtoBRelationDto
 import com.syouth.kmapper.testload.dto.RecursiveTest.RecDtoPartA
 import com.syouth.kmapper.testload.dto.RecursiveTest.RecDtoPartB
+import com.syouth.kmapper.testload.dto.bindTest.BindDto
+import com.syouth.kmapper.testload.dto.bindTest.SomeInternalDto
 import com.syouth.kmapper.testload.dto.interfaceConvertersTest.InterfaceTestDto
 import com.syouth.kmapper.testload.dto.listConvertionTest.ListDto
 import com.syouth.kmapper.testload.dto.listConvertionTest.OtherListDto
+import com.syouth.kmapper.testload.dto.mapTest.MapTestDto
 import com.syouth.kmapper.testload.dto.moneyMapperTest.MoneyDto
 import com.syouth.kmapper.testload.dto.plainClassTest.SimpleUser
 import com.syouth.kmapper.testload.dto.recursiveDataClassTest.RecursiveDataClassDto
 import com.syouth.kmapper.testload.dto.recursiveDataClassTest.RecursiveDataClassDtoSecond
 import com.syouth.kmapper.testload.dto.recursiveDataClassTest.RecursiveDataClassDtoThird
+import com.syouth.kmapper.testload.mappers.bindTest.BindMapperImpl
 import com.syouth.kmapper.testload.mappers.interfaceConverterTest.InterfaceConverterMapperImpl
 import com.syouth.kmapper.testload.mappers.listConvertionTest.ListDtoMapperImpl
 import com.syouth.kmapper.testload.mappers.listConvertionTest.ListMapperImpl
+import com.syouth.kmapper.testload.mappers.mapTest.MapTestMapperImpl
 import com.syouth.kmapper.testload.mappers.moneyMapperTest.toMoney
 import com.syouth.kmapper.testload.mappers.nonDataClassTest.DomainUser2EntityMapperImpl
 import com.syouth.kmapper.testload.mappers.nonDataClassTest.UserEntity2DomainMapperImpl
@@ -25,7 +30,7 @@ import com.syouth.kmapper.testload.mappers.recursiveDataClassTest.RecursiveDataC
 import com.syouth.kmapper.testload.mappers.recursiveTest.PartADto2DomainMapperImpl
 import com.syouth.kmapper.testload.mappers.recursiveTest.PartBDto2DomainMapperImpl
 import com.syouth.kmapper.testload.mappers.recursiveTest.RelationDto2DomainMapperImpl
-import java.util.UUID
+import java.util.*
 
 fun main() {
 
@@ -73,6 +78,18 @@ fun main() {
 
     val listMapper = ListMapperImpl()
     println(listMapper.map(listDto, listOf(OtherListDto("third"), OtherListDto("fourth"))))
+
+    // Maps
+    val mapTestDto = MapTestDto(mapOf("Seven" to 7), mapOf(), hashMapOf(3 to "3.876"))
+    val mapTestMapperImpl = MapTestMapperImpl()
+    val mapTestDomain = mapTestMapperImpl.map(mapTestDto)
+    println(mapTestDomain)
+
+    // BindMapper
+    val bindDto = BindDto("One Bind")
+    val bindMapperImpl = BindMapperImpl()
+    val bindDomain = bindMapperImpl.map(bindDto, 2, SomeInternalDto(3), 4.4)
+    println(bindDomain)
 
     // User entity including address
     val addressBaker = DomainAddress(UUID.randomUUID(), "10 Baker St", "London")
